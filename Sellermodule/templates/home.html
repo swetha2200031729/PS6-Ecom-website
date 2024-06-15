@@ -1,0 +1,86 @@
+<!-- myapp/templates/myapp/home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #007BFF; /* Set a blue background color */
+            overflow: hidden;
+            padding: 10px; /* Adjusted padding for better aesthetics */
+            display: flex;
+            justify-content: space-between; /* Align items horizontally */
+            align-items: center; /* Align items vertically */
+        }
+
+        nav img {
+            border-radius: 50%; /* Circular shape */
+            width: 40px; /* Adjust image size */
+            height: 40px; /* Adjust image size */
+            margin-right: 10px; /* Space between logo and links */
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        nav .profile-icon img, .cart-icon img {
+            width: 25px; /* Adjust icon size */
+            height: 25px; /* Adjust icon size */
+            margin-left: 10px; /* Adjust icon spacing */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="/static/img.jpg" alt="Logo"> <!-- Path to your logo -->
+        </div>
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'collection' %}">Collection</a>
+            <a href="{% url 'sales' %}">Sales</a>
+        </div>
+        <div>
+            <a href="{% url 'cart' %}">
+                <div class="cart-icon">
+                    <img src="/static/cart-icon.png" alt="Cart"> <!-- Path to your cart icon -->
+                </div>
+            </a>
+            <a href="{% url 'profile' %}">
+                <div class="profile-icon">
+                    <img src="/static/profile-icon.png" alt="Profile"> <!-- Path to your profile icon -->
+                </div>
+            </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <h1>Welcome to the Home Page</h1>
+    <!-- Your main content goes here -->
+</body>
+</html>
